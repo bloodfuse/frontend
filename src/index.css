@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+/* .dropdown:hover .dropdown-menu {
+  display: block;
+} */
+
+/* 
+Note: you can also do this with Tailwind's group-hover. Unfortunately Tailwind CDN version does not include this variant, so you will have to adjust the tailwind.config.js file in your own project.
+
+Example with group-hover: https://codesandbox.io/s/tailwind-dropdown-with-group-hover-gm9k9
+ */
