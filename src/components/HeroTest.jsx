@@ -3,8 +3,8 @@ import HeroImage from "../assets/GroupHero.png";
 const Hero = () => {
   return (
     <div className="bg-primarybg relative h-full text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col ">
-        <div className="flex flex-col justify-around m-auto  w-full lg:w-1/2">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row ">
+        <div className="flex flex-col justify-around m-auto my-10 w-full lg:w-1/2">
           <div className="text-7xl  text-left font-semibold">
             Save a Life Today By Donating
             <br />
