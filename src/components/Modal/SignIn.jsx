@@ -1,10 +1,15 @@
+import { Fragment, useState, useContext } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { Fragment, useState } from "react";
 import { FiTwitter, FiFacebook } from "react-icons/fi";
 import { XIcon } from "@heroicons/react/outline";
 import { GoogleIcon } from "../../assets/images";
 import { useUserContext } from "../../context/user/UserContext";
+import AuthContext from "../../context/user/AuthProvider";
 import { loginAuth } from "../../api/Login";
+import axios from "../../api/axios";
+import AES from "crypto-js/aes";
+
+const LOGIN_URL = "auth/login/";
 
 export default function SignIn({
   isModalOpen,
@@ -16,21 +21,56 @@ export default function SignIn({
   const [password, setPassword] = useState("");
   const { dispatch } = useUserContext();
 
+  const { setAuth } = useContext(AuthContext);
+
   const handleLogin = async (e) => {
     e.preventDefault();
     if (email === "" || password === "") return;
     try {
       setLoading(true);
 
-      const tokens = await loginAuth({ email, password });
-      console.log(tokens);
+      const response = await axios.post(
+        LOGIN_URL,
+        JSON.stringify({
+          email,
+          password,
+        }),
+        {
+          headers: { "Content-Type": "application/json" },
+        }
+      );
 
-      const mail = tokens.user.email;
-      const name = tokens.user.first_name + " " + tokens.user.last_name;
+      console.log(JSON.stringify(response?.data));
+
+      const accessToken = response?.data?.access_token;
+      const refreshToken = AES.encrypt(
+        response?.data?.refresh_token,
+        process.env.REACT_APP_SALT_KEY
+      ).toString();
+      const mail = response?.data?.email;
+      const fullname =
+        response?.data?.user?.first_name +
+        " " +
+        response?.data?.user?.last_name;
+
+      // const newwe = AES.decrypt(refreshToken, process.env.REACT_APP_SALT_KEY);
+      // console.log(newwe);
+      console.log(refreshToken);
+
+      setAuth({ name: fullname, email, accessToken });
+      // const tokens = await loginAuth({ email, password });
+      // console.log(tokens);
+
+      // const mail = tokens.user.email;
+      // const name = tokens.user.first_name + " " + tokens.user.last_name;
 
       dispatch({
         type: "LOGIN",
-        payload: { username: name, emailAddress: mail },
+        payload: {
+          username: fullname,
+          emailAddress: mail,
+          refreshToken: refreshToken,
+        },
       });
 
       closeModalFunc();
@@ -162,9 +202,10 @@ export default function SignIn({
                         </div>
                       </div>
                       <button
+                        disabled={email === "" || password === ""}
                         type="submit"
                         onClick={handleLogin}
-                        className="text-white px-7 transform sm:uppercase text-lg bg-[#F00530] hover:bg-red-800 focus:ring-4 focus:outline-none leading-loose focus:ring-red-300 font-medium rounded-[4px]  w-full py-2 lg:py-4 text-center"
+                        className="text-white px-7 transform sm:uppercase text-lg bg-[#F00530] disabled:bg-red-800 focus:ring-4 focus:outline-none leading-loose focus:ring-red-300 font-medium rounded-[4px]  w-full py-2 lg:py-4 text-center"
                       >
                         {loading ? (
                           <>

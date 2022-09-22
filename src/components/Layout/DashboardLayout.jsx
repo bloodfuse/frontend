@@ -1,15 +1,14 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, Navigate } from "react-router-dom";
 import { Navbar, SideBar } from "../Dashboard";
-import { Navigate } from "react-router-dom";
 import { useUserContext } from "../../context/user/UserContext";
 
 const DashboardLayout = () => {
   const { loginState } = useUserContext();
-  if(!loginState) {
+  if (!loginState) {
     return <Navigate to="/" />;
   }
-  
+
   return (
     <div className="flex items-center h-auto md:h-screen">
       <div className="w-[0%] lg:w-[15%] h-full">

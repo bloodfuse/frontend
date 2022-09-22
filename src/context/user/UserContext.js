@@ -5,20 +5,25 @@ const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
   const initialState = {
-    username: '',
-    email: '',
-    loginState: sessionStorage.getItem('loginState') ? true : false,
+    username: "",
+
+    email: "",
+    loginState: sessionStorage.getItem("loginState") ? true : false,
     loading: false,
+    refreshToken: sessionStorage.getItem("refreshToken"),
   };
 
   const [state, dispatch] = useReducer(UserReducer, initialState);
-  return <UserContext.Provider value={{
+  return (
+    <UserContext.Provider
+      value={{
         ...state,
-        dispatch
+        dispatch,
       }}
     >
       {children}
     </UserContext.Provider>
+  );
 };
 
 export const useUserContext = () => useContext(UserContext);

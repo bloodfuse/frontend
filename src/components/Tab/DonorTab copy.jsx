@@ -3,8 +3,6 @@ import { signUpAuth } from "../../api/SignUp";
 import { useUserContext } from "../../context/user/UserContext";
 import axios from "../../api/axios";
 
-const REGISTER_URL = "/registration/";
-
 const DonorTab = ({ activeTabIndex, closeModal, openLoginModalFunc }) => {
   const [fullname, setFullName] = useState("");
   const [email, setEmail] = useState("");
@@ -27,44 +25,33 @@ const DonorTab = ({ activeTabIndex, closeModal, openLoginModalFunc }) => {
     try {
       setloading(true);
       const account_type = "donor";
-      // const blood_group = bloodGroup;
-      // const first_name = fullname.split(" ")[0];
-      // const last_name = fullname.split(" ")[1];
+      const blood_group = bloodGroup;
+      const first_name = fullname.split(" ")[0];
+      const last_name = fullname.split(" ")[1];
 
-      const response = await axios.post(
-        REGISTER_URL,
-        JSON.stringify({
-          email,
-          account_type,
-          blood_group: bloodGroup,
-          password1,
-          password2,
-          first_name: fullname.split(" ")[0],
-          last_name: fullname.split(" ")[1],
-        }),
-        {
-          headers: { "Content-Type": "application/json" },
-        }
-      );
+      const tokens = await signUpAuth({
+        email,
+        account_type,
+        fullname,
+        blood_group,
+        password1,
+        password2,
+        first_name,
+        last_name,
+      });
 
-      console.log(response.data);
-      console.log(response.accessToken);
-      console.log(JSON.stringify(response));
+      console.log(tokens);
 
-      // const mail = tokens.user.email;
-      // const name = tokens.user.first_name + " " + tokens.user.last_name;
+      const mail = tokens.user.email;
+      const name = tokens.user.first_name + " " + tokens.user.last_name;
 
-      // dispatch({
-      //   type: "LOGIN",
-      //   payload: { username: name, emailAddress: mail },
-      // });
-      // closeModal();
+      dispatch({
+        type: "LOGIN",
+        payload: { username: name, emailAddress: mail },
+      });
+      closeModal();
     } catch (err) {
-      if (!err?.response) console.log("No Server Response");
-      else if (err.response?.status === 409) console.log("err 409");
-      else {
-        console.log(err);
-      }
+      console.log(err);
     }
     setloading(false);
   };

@@ -13,7 +13,7 @@ const KnowOurPatients = () => {
       details:
         "Meet 14 years old Seun from Lagos. She and others who are fighting Leukemia often need blood trans-fusions while going through chemo treatments.",
       btnDescription: "Watch on Our Youtube",
-      youtubeLink: "https://www.youtube.com/embed/JU5ZoGU3wzA",
+      youtubeLink: "",
     },
     {
       name: "Audu Haruna",
@@ -21,7 +21,7 @@ const KnowOurPatients = () => {
       details:
         "Meet 28 years old Haruna from Kano, who is fighting Cancer often need blood trans-fusions while going through chemo treatments.",
       btnDescription: "Watch on Our Youtube",
-      youtubeLink: "https://www.youtube.com/embed/fehAgOqTR44",
+      youtubeLink: "",
     },
   ];
   return (

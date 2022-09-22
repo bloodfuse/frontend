@@ -2,8 +2,9 @@ import React from "react";
 
 import { AboutWoman, MakeADiff1, MakeADiff2 } from "../../assets/images";
 import { ChevronDoubleRightIcon } from "@heroicons/react/outline";
-
+import useRefreshToken from "../../hooks/useRefreshToken";
 const MakeADiff = () => {
+  const refresh = useRefreshToken();
   return (
     <div className="w-full pb-8">
       <h1 className="text-2xl md:text-3xl text-center py-6 px-2 font-bold hidden sm:block">
@@ -23,13 +24,13 @@ const MakeADiff = () => {
           </div>
           <p className="ml-2 py-4">Become a Volunteer</p>
           {/* eslint-disable-next-line */}
-          <a
-            href="#"
+          <button
+            onClick={() => refresh()}
             className="flex gap-3 items-center text-[#F00530] ml-2 text-[14px] cursor-pointer"
           >
-            Learn More
+            Refresh
             <ChevronDoubleRightIcon className="h-3 w-3" />
-          </a>
+          </button>
         </div>
         <div className="w-[85%] h-[280px] sm:w-[60%] md:w-[40%] sm:h-[350px] lg:w-[300px] border border-gray-400 rounded-md flex flex-col items-start">
           <div className="w-full h-[60%] bg-blue-200">

@@ -13,11 +13,14 @@ const UserReducer = (state, action) => {
     case "LOGIN": {
       sessionStorage.setItem("loginState", true);
 
+      sessionStorage.setItem("refreshToken", action.payload.refreshToken);
+
       return {
         ...state,
         loginState: true,
         username: action.payload.username,
         email: action.payload.emailAddress,
+        refreshToken: action.payload.refreshToken,
       };
     }
     case "LOGOUT": {
