@@ -70,7 +70,7 @@ export default function NavBar({ bgColor, textColor }) {
           <div className="flex justify-between items-center py-6  md:space-x-10">
             <div className="flex justify-start ">
               <Link to="/">
-                <img className="h-10 w-auto" src={Logo} alt="Logo" />
+                <img className="h-15 w-[100px]" src={Logo} alt="Logo" />
               </Link>
             </div>
             <div className="ml-auto md:hidden">
@@ -85,7 +85,6 @@ export default function NavBar({ bgColor, textColor }) {
               as="nav"
               className="hidden md:flex md:items-center space-x-10"
             >
-
               <Popover className="hiden md:relative">
                 {({ open }) => (
                   <>

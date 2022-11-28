@@ -40,7 +40,7 @@ const Footer = () => {
               <Link to="#">Make an appointment</Link>
               <Link to="#">Why Donate?</Link>
               <Link to="#">Where can I Donate?</Link>
-              <Link to="/who-can-donate">Eligibity</Link>
+              <Link to="/who-can-donate">Eligibility</Link>
               <Link to="#">Donate Financially</Link>
               <Link to="#">Frequently Asked Questions</Link>
             </div>
