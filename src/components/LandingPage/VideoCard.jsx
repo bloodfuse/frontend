@@ -4,12 +4,20 @@ const VideoCard = ({ person }) => {
   return (
     <div className="px-4 flex flex-col">
       <div className="w-[90%] lg:w-[80%] mx-auto">
-        <iframe
+        {/* <iframe
           className="w-full md:aspect-[20/9] aspect-[16/10] mx-auto"
           src={person.youtubeLink}
           title="YouTube video player"
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        ></iframe> */}
+        <iframe
+          className="w-full md:aspect-[20/9] aspect-[16/10] mx-auto"
+          src={person.youtubeLink}
+          title={person.name}
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowFullScreen
         ></iframe>
       </div>
