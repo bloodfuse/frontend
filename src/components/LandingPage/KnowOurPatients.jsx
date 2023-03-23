@@ -13,7 +13,8 @@ const KnowOurPatients = () => {
       // details: "Meet 14 years old Seun from Lagos. She and others who are fighting Leukemia often need blood trans-fusions while going through chemo treatments.",
       details: "How to create an account on BloodFuse.",
       btnDescription: "Watch on Our Youtube",
-      youtubeLink: "https://www.youtube.com/watch?v=1Vb6srw5bR8",
+      youtubeLink: "https://www.youtube.com/embed/1Vb6srw5bR8",
+      // youtubeLink: "https://www.youtube.com/watch?v=1Vb6srw5bR8",
     },
     //     {
     //       name: "Audu Haruna",
